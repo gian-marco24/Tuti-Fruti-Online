@@ -41,16 +41,11 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 ```bash
 /src
-
-/features
-
-/auth
-
-/game
-
-/lobby
-
-/ranking
+  /features
+    /auth
+    /game
+    /lobby
+    /ranking
 
 ```
 
@@ -58,18 +53,12 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 ```bash
 /src
-
-/domain  →  Entidades  y  contratos
-
-/application  →  Casos  de  uso
-
-/infrastructure
-
-/db  →  Conexión  y  modelos  Mongoose
-
-/api  →  Controladores (Express)
-
-/sockets  →  Lógica  de  Socket.IO
+  /domain  →  Entidades  y  contratos
+  /application  →  Casos  de  uso
+  /infrastructure
+    /db  →  Conexión  y  modelos  Mongoose
+    /api  →  Controladores (Express)
+    /sockets  →  Lógica  de  Socket.IO
 
 ```
 
