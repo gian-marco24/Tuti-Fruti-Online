@@ -41,11 +41,16 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 ```bash
 /src
-	/features
-		/auth
-		/game
-		/lobby
-		/ranking
+
+/features
+
+/auth
+
+/game
+
+/lobby
+
+/ranking
 
 ```
 
@@ -53,34 +58,46 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 ```bash
 /src
-	/domain  →  Entidades  y  contratos
-	/application  →  Casos  de  uso
-	/infrastructure
-		/db  →  Conexión  y  modelos  Mongoose
-		/api  →  Controladores (Express)
-		/sockets  →  Lógica  de  Socket.IO
+
+/domain  →  Entidades  y  contratos
+
+/application  →  Casos  de  uso
+
+/infrastructure
+
+/db  →  Conexión  y  modelos  Mongoose
+
+/api  →  Controladores (Express)
+
+/sockets  →  Lógica  de  Socket.IO
+
 ```
 
 ----------
 
 ## 📱 Vistas del Frontend
 
-
-1.  **Landing**
+#### 1.  **Landing**
 
 - Botón de _Registrarse_
 
 - Botón de _Iniciar sesión_
 
-2.  **Registro (Sign Up)**
+----------
+
+#### 2.  **Registro (Sign Up)**
 
 - Formulario: nombre de usuario, email, contraseña
 
-3.  **Login (Sign In)**
+----------
+
+#### 3.  **Login (Sign In)**
 
 - Formulario: email, contraseña
 
-4.  **Lobby / Menú Principal**
+----------
+
+#### 4.  **Lobby / Menú Principal**
 
 - Crear sala
 
@@ -88,13 +105,17 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 - Entrar a sala con código
 
-5.  **Sala de Espera**
+----------
+
+#### 5.  **Sala de Espera**
 
 - Lista de jugadores
 
 - Botón de iniciar partida (host)
 
-6.  **Juego**
+----------
+
+#### 6.  **Juego**
 
 - Letra aleatoria
 
@@ -102,16 +123,19 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 - Temporizador y botón _STOP_
 
-7.  **Resultados de Ronda**
+----------
+
+#### 7.  **Resultados de Ronda**
 
 - Tabla comparativa de respuestas
 
 - Puntos por respuesta
 
-8.  **Resultados Finales**
+----------
+
+#### 8.  **Resultados Finales**
 
 - Ranking global
-  
 
 ----------
 
@@ -120,66 +144,66 @@ Versión online del clásico juego **Tuti Fruti (Stop / Basta)**, desarrollada e
 
 ### 🔹 Autenticación (`/auth`)
 
--   `POST /auth/register` → Registrar usuario nuevo.
-    
--   `POST /auth/login` → Iniciar sesión (retorna Access + Refresh Token).
-    
--   `POST /auth/refresh` → Renovar Access Token.
-    
--   `POST /auth/logout` → Cerrar sesión y revocar Refresh Token.
-    
+-  `POST /auth/register` → Registrar usuario nuevo.
+
+-  `POST /auth/login` → Iniciar sesión (retorna Access + Refresh Token).
+
+-  `POST /auth/refresh` → Renovar Access Token.
+
+-  `POST /auth/logout` → Cerrar sesión y revocar Refresh Token.
+
 
 ----------
 
 ### 🔹 Usuario (`/user`)
 
--   `GET /user/me` → Obtener perfil del usuario autenticado.
-    
--   `PUT /user/update` → Actualizar perfil (ej. nombre o avatar).
-    
--   `GET /user/stats/:id` → Obtener estadísticas del jugador (partidas jugadas, ganadas, puntos totales).
-    
+-  `GET /user/me` → Obtener perfil del usuario autenticado.
+
+-  `PUT /user/update` → Actualizar perfil (ej. nombre o avatar).
+
+-  `GET /user/stats/:id` → Obtener estadísticas del jugador (partidas jugadas, ganadas, puntos totales).
+
 
 ----------
 
 ### 🔹 Salas (`/rooms`)
 
--   `POST /rooms/create` → Crear sala nueva.
-    
--   `POST /rooms/join/:roomId` → Unirse a sala existente.
-    
--   `POST /rooms/leave/:roomId` → Salir de una sala.
-    
--   `GET /rooms/list` → Listar salas disponibles.
-    
--   `GET /rooms/:roomId` → Obtener detalles de la sala.
-    
--   `DELETE /rooms/:roomId` → Cerrar sala (solo host).
-    
+-  `POST /rooms/create` → Crear sala nueva.
+
+-  `POST /rooms/join/:roomId` → Unirse a sala existente.
+
+-  `POST /rooms/leave/:roomId` → Salir de una sala.
+
+-  `GET /rooms/list` → Listar salas disponibles.
+
+-  `GET /rooms/:roomId` → Obtener detalles de la sala.
+
+-  `DELETE /rooms/:roomId` → Cerrar sala (solo host).
+
 
 ----------
 
 ### 🔹 Juego (`/game`)
 
--   `POST /game/start/:roomId` → Iniciar partida (solo host).
-    
--   `POST /game/answer/:roomId` → Enviar respuestas del jugador para la ronda actual.
-    
--   `GET /game/results/:roomId/:roundId` → Obtener resultados de una ronda.
-    
--   `GET /game/final/:roomId` → Obtener ranking final de la sala.
-    
--   `POST /game/next-round/:roomId` → Pasar a la siguiente ronda (solo host).
-    
+-  `POST /game/start/:roomId` → Iniciar partida (solo host).
+
+-  `POST /game/answer/:roomId` → Enviar respuestas del jugador para la ronda actual.
+
+-  `GET /game/results/:roomId/:roundId` → Obtener resultados de una ronda.
+
+-  `GET /game/final/:roomId` → Obtener ranking final de la sala.
+
+-  `POST /game/next-round/:roomId` → Pasar a la siguiente ronda (solo host).
+
 
 ----------
 
 ### 🔹 Ranking Global (`/ranking`)
 
--   `GET /ranking/global` → Ver ranking general de todos los jugadores.
-    
--   `GET /ranking/friends/:userId` → Ver ranking entre amigos (futuro opcional).
-    
+-  `GET /ranking/global` → Ver ranking general de todos los jugadores.
+
+-  `GET /ranking/friends/:userId` → Ver ranking entre amigos (futuro opcional).
+
 
 ----------
 
@@ -189,33 +213,32 @@ Los sockets complementan los endpoints REST para tiempo real.
 
 ### Conexión
 
--   `connection` → Cuando un cliente se conecta.
-    
--   `disconnect` → Cuando un cliente se desconecta.
-    
+-  `connection` → Cuando un cliente se conecta.
+
+-  `disconnect` → Cuando un cliente se desconecta.
+
 
 ### Salas
 
--   `join_room` → Unirse a una sala en tiempo real.
-    
--   `leave_room` → Salir de una sala en tiempo real.
-    
--   `room_updated` → Notificación a todos los jugadores de cambios en la sala.
-    
+-  `join_room` → Unirse a una sala en tiempo real.
+
+-  `leave_room` → Salir de una sala en tiempo real.
+
+-  `room_updated` → Notificación a todos los jugadores de cambios en la sala.
+
 
 ### Juego
 
--   `game_started` → Aviso de que la partida comienza.
-    
--   `new_round` → Notificación de inicio de nueva ronda con letra aleatoria.
-    
--   `answer_submitted` → Confirmación de envío de respuestas.
-    
--   `round_results` → Publicación de resultados de ronda en tiempo real.
-    
--   `final_results` → Publicación de resultados finales de la partida.
+-  `game_started` → Aviso de que la partida comienza.
 
-  
+-  `new_round` → Notificación de inicio de nueva ronda con letra aleatoria.
+
+-  `answer_submitted` → Confirmación de envío de respuestas.
+
+-  `round_results` → Publicación de resultados de ronda en tiempo real.
+
+-  `final_results` → Publicación de resultados finales de la partida.
+
 
 ----------
 
@@ -258,7 +281,8 @@ npm  install
 
 `MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/tutifruti
 
-PORT=4000`
+
+PORT=5000`
 
 
 4. Iniciar backend y frontend en paralelo:
