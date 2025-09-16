@@ -1,1 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
+/* Definición de tu tema / variables globales */
+@theme {
+  /* Fuente predeterminada */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Colores principales */
+  --color-primary-light: #818CF8;
+  --color-primary: #4F46E5;
+  --color-primary-dark: #3730A3;
+
+  --color-accent: #10B981;
+
+  /* Neutrales / textos */
+  --color-text-default: #1F2937;
+  --color-text-muted: #6B7280;
+
+  /* Fondos */
+  --color-bg-light: #F9FAFB;
+  --color-bg-dark: #111827;
+
+  /* Estados */
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+
+  /* Borde / división */
+  --color-border-light: #E5E7EB;
+  --color-neutral-dark: #374151;
+}
+
+/* Opcional: si querés asignar la fuente por defecto para todos los textos */
+:root {
+  font-family: var(--font-sans);
+}
