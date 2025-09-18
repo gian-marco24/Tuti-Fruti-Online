@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { type RegisterSchema } from "../schemas/registerSchema";
+import { type LoginSchema } from '../schemas/loginSchema';
 import { useNavigate } from 'react-router-dom';
 import { useApi, type UseApiOptions } from '../../../infraestructure/services/useApi';
 import { type UseFormSetError } from "react-hook-form";
@@ -25,16 +26,54 @@ export const useAuth = () => {
     setError(null);
     setSuccess(false);
 
+    const registerData = {
+      username: data.username,
+      email: data.email,
+      password: data.password
+    }
+
     const result = await handleCall({
       method: "POST",
       url: "/auth/register",
-      body: data,
+      body: registerData,
     });
 
     // Si hay errores de validación de campos
     if (result.fieldErrors) {
       Object.entries(result.fieldErrors).forEach(([field, message]) => {
         setFormErrors(field as keyof RegisterSchema, { type: "server", message });
+      });
+      setLoading(false);
+      return;
+    }
+
+    // Si hay error global
+    if (result.error) {
+      setError(result.error);
+      setLoading(false);
+      return;
+    }
+
+    setSuccess(true);
+    setLoading(false);
+    setTimeout(() => navigate("/"), 1000);
+  };
+
+  const submitLogin = async (data: LoginSchema, setFormErrors: UseFormSetError<LoginSchema>) => {
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    const result = await handleCall({
+      method: "POST",
+      url: "/auth/login",
+      body: data,
+    });
+
+    // Si hay errores de validación de campos
+    if (result.fieldErrors) {
+      Object.entries(result.fieldErrors).forEach(([field, message]) => {
+        setFormErrors(field as keyof LoginSchema, { type: "server", message });
       });
       setLoading(false);
       return;
@@ -55,6 +94,7 @@ export const useAuth = () => {
 
   return {
     submitRegister,
+    submitLogin,
     loading,
     error,
     success,
