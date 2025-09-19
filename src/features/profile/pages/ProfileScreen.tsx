@@ -2,12 +2,16 @@ import { useState } from "react";
 import LogoutModal from "../ui/logoutModal";
 import { useSelector } from "react-redux";
 import { type RootState } from "../../../infraestructure/store";
-import type { User } from "../../../infraestructure/schemas/userSchema";
+import type { userData } from "../../../infraestructure/schemas/userSchema";
+import { useProfile } from "../hooks/useProfile";
 
 export default function ProfileScreen() {
   const [isEditing, setIsEditing] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-  const user = useSelector((state: RootState) => state?.auth.user) as User
+  const user = useSelector((state: RootState) => state?.auth.user) as userData
+  const [newUsername, setNewUsername] = useState(user.username)
+
+  const { logOut, changeUsername, loading } = useProfile()
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
@@ -22,11 +26,15 @@ export default function ProfileScreen() {
         {/* 📌 Cabecera del perfil */}
         <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
           <div className="relative">
-            <img
-              src={user.avatar}
-              alt="Foto de perfil"
-              className="w-28 h-28 rounded-full border-4 border-primary object-cover"
-            />
+            {user?.avatar ? (
+              <img
+                src={user?.avatar}
+                alt="Foto de perfil"
+                className="w-28 h-28 rounded-full border-4 border-primary object-cover"
+              />
+            ) : (
+              <svg  xmlns="http://www.w3.org/2000/svg" width={128} height={128} fill={"#4F46E5"} viewBox="0 0 24 24">{/* Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free */}<path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5m0-8c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3M4 22h16c.55 0 1-.45 1-1v-1c0-3.86-3.14-7-7-7h-4c-3.86 0-7 3.14-7 7v1c0 .55.45 1 1 1m6-7h4c2.76 0 5 2.24 5 5H5c0-2.76 2.24-5 5-5"></path></svg>
+            )}
             <label className="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full cursor-pointer hover:bg-primary-dark transition">
               <input
                 type="file"
@@ -42,15 +50,22 @@ export default function ProfileScreen() {
             {isEditing ? (
               <input
                 type="text"
-                value={user.username}
-                onChange={(e) => console.log(e.target.value)}
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
                 className="px-4 py-2 border-2 border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             ) : (
-              <h2 className="text-2xl font-bold text-primary">{user.username}</h2>
+              <h2 className="text-2xl font-bold text-primary">{user?.username}</h2>
             )}
             <button
-              onClick={() => setIsEditing(!isEditing)}
+              onClick={() => {
+                if (isEditing) {
+                  changeUsername(newUsername);
+                  setIsEditing(false);
+                } else {
+                  setIsEditing(true);
+                }
+              }}
               className="cursor-pointer mt-2 px-3 py-1 text-sm bg-primary text-white rounded-lg hover:bg-primary-dark transition"
             >
               {isEditing ? "Guardar" : "Editar nombre"}
@@ -60,8 +75,8 @@ export default function ProfileScreen() {
 
         {/* 📊 Estadísticas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {user.stats &&
-            Object.entries(user.stats).map(([key, value]) => (
+          {user?.stats &&
+            Object.entries(user?.stats)?.map(([key, value]) => (
               <div
                 key={key}
                 className="bg-surface rounded-xl shadow-sm p-6 text-center border border-border-light"
@@ -71,10 +86,10 @@ export default function ProfileScreen() {
                   {key === "gamesPlayed"
                     ? "Partidas jugadas"
                     : key === "gamesWon"
-                    ? "Partidas ganadas"
-                    : key === "totalPoints"
-                    ? "Puntos totales"
-                    : key}
+                      ? "Partidas ganadas"
+                      : key === "totalPoints"
+                        ? "Puntos totales"
+                        : key}
                 </p>
               </div>
             ))}
@@ -96,9 +111,10 @@ export default function ProfileScreen() {
         <LogoutModal
           onClose={() => setShowLogout(false)}
           onConfirm={() => {
-            console.log("Sesión cerrada");
+            logOut()
             setShowLogout(false);
           }}
+          loading={loading}
         />
       )}
     </div>

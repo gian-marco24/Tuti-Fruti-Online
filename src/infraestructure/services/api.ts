@@ -5,7 +5,6 @@ import { clearUser, setUser } from "../store/authSlice";
 
 export const api = axios.create({
   baseURL: `${VITE_BACKEND_API_URL}`, // Cambia según tu backend
-  headers: { "Content-Type": "application/json" }
 });
 
 api.defaults.withCredentials = true

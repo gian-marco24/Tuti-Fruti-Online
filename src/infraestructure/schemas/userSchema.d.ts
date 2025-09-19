@@ -11,3 +11,15 @@ export interface User {
   };
   createdAt?: Date;
 }
+
+export interface userData {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  stats: {
+    gamesPlayed: number;
+    gamesWon: number;
+    totalPoints: number;
+  }
+}

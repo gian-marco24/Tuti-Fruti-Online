@@ -1,9 +1,12 @@
+import { ButtonAnim } from "../../shared/ui/ButtonAnim";
+
 interface LogoutModalProps {
   onClose: () => void;
   onConfirm: () => void;
+  loading: boolean;
 }
 
-export default function LogoutModal({ onClose, onConfirm }: LogoutModalProps) {
+export default function LogoutModal({ onClose, onConfirm, loading }: LogoutModalProps) {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-sm border border-border-light">
@@ -13,19 +16,19 @@ export default function LogoutModal({ onClose, onConfirm }: LogoutModalProps) {
         <p className="text-sm text-text-muted mb-6">
           Se cerrará tu sesión actual y deberás volver a iniciar sesión.
         </p>
-        <div className="flex justify-end gap-4">
+        <div className="flex justify-center gap-4">
           <button
             onClick={onClose}
             className="cursor-pointer px-4 py-2 rounded-lg border border-border-light text-text-default hover:bg-border-light transition"
           >
             Cancelar
           </button>
-          <button
+          <ButtonAnim 
+            loading={loading}
             onClick={onConfirm}
-            className="cursor-pointer px-4 py-2 rounded-lg bg-error text-white font-semibold hover:bg-red-700 transition"
-          >
-            Cerrar sesión
-          </button>
+            text="Cerrar sesión"
+            type="button"
+          />
         </div>
       </div>
     </div>

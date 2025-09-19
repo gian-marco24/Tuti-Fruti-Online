@@ -1,8 +1,8 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { User } from "../schemas/userSchema";
+import type { userData } from "../schemas/userSchema";
 
 interface AuthState {
-  user: User | null;
+  user: userData | null;
 }
 
 const initialState: AuthState = {
@@ -13,13 +13,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User>) => {
+    setUser: (state, action: PayloadAction<userData>) => {
       state.user = action.payload;
     },
     clearUser: (state) => {
       state.user = null;
     },
-    updateUser: (state, action: PayloadAction<Partial<User>>) => {
+    updateUser: (state, action: PayloadAction<Partial<userData>>) => {
       if (state.user) {
         state.user = { ...state.user, ...action.payload };
       }

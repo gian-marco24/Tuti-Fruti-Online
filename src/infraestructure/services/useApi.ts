@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import axios, { type AxiosRequestConfig, type AxiosResponse, type Method, type AxiosHeaders } from "axios";
 import { api } from "./api";
-
-// 📌 Tipos genéricos
-type Data<T> = T | null;
+import type { userData } from "../schemas/userSchema";
 
 interface Body {
   [key: string]: unknown;
@@ -30,15 +28,16 @@ interface UseApiCall<T> {
 
 export interface ApiResponse<T> {
   success: boolean;
-  data: T;
+  data?: T;
+  user?: userData;
   error?: { message: string };
 }
 
-// 📌 Resultado que devuelve handleCall
+// Cambia el tipo de ApiResult y el estado data para aceptar ambos tipos
 export interface ApiResult<T> {
-  data: T | null;
-  error: string | null; // mensaje global
-  fieldErrors?: Record<string, string>; // errores específicos de campos
+  data: T | userData | null;
+  error: string | null;
+  fieldErrors?: Record<string, string>;
 }
 
 interface FieldError {
@@ -54,7 +53,7 @@ interface ValidationError {
 // 📌 Custom Hook principal
 export const useApi = <T>(optionsRef: RefObject<UseApiOptions>) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<Data<T>>(null);
+  const [data, setData] = useState<T | userData | null>(null)
   const [error, setError] = useState<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -80,8 +79,9 @@ export const useApi = <T>(optionsRef: RefObject<UseApiOptions>) => {
       try {
         const response = await call;
         if (!controller.signal.aborted) {
-          setData(response.data.data);
-          return { data: response.data.data, error: null };
+          const resultData = response.data.data ?? response.data.user ?? null;
+          setData(resultData);
+          return { data: resultData, error: null };
         }
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {

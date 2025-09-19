@@ -4,18 +4,25 @@ import { type LoginSchema } from '../schemas/loginSchema';
 import { useNavigate } from 'react-router-dom';
 import { useApi, type UseApiOptions } from '../../../infraestructure/services/useApi';
 import { type UseFormSetError } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../infraestructure/store/authSlice";
+import type { userData } from '../../../infraestructure/schemas/userSchema';
+import { AxiosHeaders } from 'axios';
 
 export const useAuth = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | string[] | null>(null)
   const [success, setSuccess] = useState(false)
+  const dispatch = useDispatch()
 
   const optionsRef = useRef<UseApiOptions>({
     autoFetch: false,
     params: {
       method: "POST",
       url: "",
+      headers: new AxiosHeaders({ "Content-Type": "application/json" })
+      
     },
   });
 
@@ -85,11 +92,12 @@ export const useAuth = () => {
       setLoading(false);
       return;
     }
+    dispatch(setUser(result.data as userData))
 
     // Éxito
     setSuccess(true);
     setLoading(false);
-    setTimeout(() => navigate("/"), 1000);
+    setTimeout(() => navigate("/profile"), 1000);
   };
 
   return {

@@ -5,8 +5,8 @@ import { type RootState } from '../infraestructure/store';
 
 const ProtectedRoutes = () => {
   const user = useSelector((state: RootState) => state.auth.user)
-  console.log(user)
-  return user ? <Outlet/> : <Navigate to="/login" />;
+
+  return user ? <Outlet/> : <Navigate to="/login" />
 };
 
 export default ProtectedRoutes;

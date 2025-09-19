@@ -3,15 +3,14 @@ import authReducer from "./authSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
-const persistConfig = {
-  key: "root",
+const authPersistConfig = {
+  key: "auth",
   storage,
-  whitelist: ["auth"], // solo persistimos auth
 };
 
 const store = configureStore({
   reducer: {
-    auth: persistReducer(persistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
   },
   middleware: (getDefault) => getDefault({ serializableCheck: false }),
 });

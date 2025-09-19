@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, type RegisterSchema } from "../schemas/registerSchema";
 import { useAuth } from "../hooks/useAuth";
+import { ButtonAnim } from "../../shared/ui/ButtonAnim";
 
 export default function RegisterScreen() {
   const { register, handleSubmit, formState: { errors }, reset, setError } = useForm<RegisterSchema>({
@@ -105,42 +106,11 @@ export default function RegisterScreen() {
           </div>
           {error && <p className="text-sm text-error text-center">{error}</p>}
           {success && <p className="text-sm text-success text-center">Registro creado correctamente</p>}
-          <button
+          <ButtonAnim 
+            loading={loading}
             type="submit"
-            disabled={loading}
-            className={`w-full px-4 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-2
-              ${loading ? "bg-primary/70 cursor-not-allowed" : "bg-primary hover:bg-primary-dark text-white cursor-pointer"}
-            `}
-          >
-            {loading ? (
-              <>
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v8H4z"
-                  ></path>
-                </svg>
-                Cargando...
-              </>
-            ) : (
-              "Registrarse"
-            )}
-          </button>
-
+            text="Registrarse"
+          />
         </form>
 
         {/* Divider */}
