@@ -21,7 +21,7 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="min-h-screen pt-24 px-6 bg-bg-light flex justify-center">
+    <div className="min-h-screen pt-12 px-6 bg-bg-light flex justify-center items-start">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8 border border-border-light">
         {/* 📌 Cabecera del perfil */}
         <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
@@ -45,8 +45,10 @@ export default function ProfileScreen() {
               ✏️
             </label>
           </div>
-
-          <div className="flex-1 text-center md:text-left">
+          <div className="flex-1 text-center md:text-left gap-4">
+            <div>
+              <h2 className="text-md font-regular text-primary">{user?.email}</h2>
+            </div>
             {isEditing ? (
               <input
                 type="text"
@@ -55,18 +57,18 @@ export default function ProfileScreen() {
                 className="px-4 py-2 border-2 border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             ) : (
-              <h2 className="text-2xl font-bold text-primary">{user?.username}</h2>
+              <h2 className="text-3xl font-bold text-primary">{user?.username}</h2>
             )}
             <button
               onClick={() => {
                 if (isEditing) {
-                  changeUsername(newUsername);
+                  if(user.username !== newUsername) changeUsername(newUsername);
                   setIsEditing(false);
                 } else {
                   setIsEditing(true);
                 }
               }}
-              className="cursor-pointer mt-2 px-3 py-1 text-sm bg-primary text-white rounded-lg hover:bg-primary-dark transition"
+              className="cursor-pointer mt-2 px-4 py-2 text-md bg-primary text-white rounded-lg hover:bg-primary-dark transition"
             >
               {isEditing ? "Guardar" : "Editar nombre"}
             </button>

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
-import { InputField } from "../ui/inputField";
+import { InputField } from "../../shared/ui/inputField";
 import { loginSchema, type LoginSchema } from "../schemas/loginSchema";
 import { useAuth } from "../hooks/useAuth";
 import { ButtonAnim } from "../../shared/ui/ButtonAnim";
@@ -14,7 +14,7 @@ export default function LoginScreen() {
   const { error, success, loading, submitLogin } = useAuth();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bg-light px-4">
+    <div className="min-h-screen flex items-start pt-12 justify-center bg-bg-light px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 border border-border-light">
         {/* Título */}
         <h2 className="text-3xl font-bold text-center text-primary mb-6">
