@@ -21,8 +21,8 @@ export default function ProfileScreen() {
   };
 
   return (
-    <div className="min-h-screen pt-12 px-6 bg-bg-light flex justify-center items-start">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8 border border-border-light">
+    <div className="min-h-screen pt-12 px-6 bg-bg-ultraDark flex justify-center items-start">
+      <div className="w-full max-w-3xl bg-bg-dark rounded-2xl shadow-xl p-8 border border-neutral-dark">
         {/* 📌 Cabecera del perfil */}
         <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
           <div className="relative">
@@ -45,7 +45,7 @@ export default function ProfileScreen() {
               ✏️
             </label>
           </div>
-          <div className="flex-1 text-center md:text-left gap-4">
+          <div className="flex-1 text-center md:text-left space-x-4">
             <div>
               <h2 className="text-md font-regular text-primary">{user?.email}</h2>
             </div>
@@ -54,7 +54,7 @@ export default function ProfileScreen() {
                 type="text"
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value)}
-                className="px-4 py-2 border-2 border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                className="px-4 py-2 border-2 text-text-light border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               />
             ) : (
               <h2 className="text-3xl font-bold text-primary">{user?.username}</h2>
@@ -81,10 +81,10 @@ export default function ProfileScreen() {
             Object.entries(user?.stats)?.map(([key, value]) => (
               <div
                 key={key}
-                className="bg-surface rounded-xl shadow-sm p-6 text-center border border-border-light"
+                className="bg-surface rounded-xl shadow-md p-6 text-center border border-border-light"
               >
                 <p className="text-2xl font-bold text-primary">{value}</p>
-                <p className="text-sm text-text-muted">
+                <p className="text-sm text-text-light">
                   {key === "gamesPlayed"
                     ? "Partidas jugadas"
                     : key === "gamesWon"

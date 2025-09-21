@@ -23,24 +23,24 @@ export default function RegisterScreen() {
   }, [reset]);
 
   return (
-    <div className="flex py-16 md:py-8 xl:py-12 justify-center bg-bg-light px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 border border-border-light">
+    <div className="xl:min-h-screen xl:items-start flex py-16 md:py-8 xl:pt-12 justify-center bg-bg-ultraDark px-4">
+      <div className="w-full max-w-md bg-bg-dark rounded-2xl shadow-lg p-6 md:p-8 border border-neutral-dark">
         {/* Título */}
-        <h2 className="text-3xl font-bold text-center text-primary mb-6">
+        <h2 className="max-md:text-3xl text-2xl xl:text-3xl font-bold text-center text-primary mb-2 md:mb-3 xl:mb-6">
           Crear cuenta
         </h2>
-        <p className="text-center text-text-muted mb-8">
+        <p className="text-center max-md:text-lg text-sm xl:text-lg text-text-light mb-4 md:mb-6 xl:mb-8">
           Completa tus datos para registrarte y comenzar a jugar
         </p>
 
         {/* Formulario */}
-        <form className="space-y-5" onSubmit={handleSubmit((data) => {
+        <form className="xl:space-y-5 space-y-3 max-md:space-y-5" onSubmit={handleSubmit((data) => {
           submitRegister(data, setError)
         })}>
           <div>
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-text-default mb-1"
+              className="block text-sm font-regular xl:font-medium text-text-light mb-1"
             >
               Nombre de usuario
             </label>
@@ -50,14 +50,14 @@ export default function RegisterScreen() {
               placeholder="Usuario123"
               registration={register('username')}
               error={errors.username}
-              className={`w-full rounded-lg border-2 ${errors.username ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
+              className={`w-full text-text-light max-md:text-base text-xs xl:text-base rounded-lg border-2 ${errors.username ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
             />
           </div>
 
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-text-default mb-1"
+              className="block text-sm font-regular xl:font-medium text-text-light mb-1"
             >
               Correo electrónico
             </label>
@@ -67,14 +67,14 @@ export default function RegisterScreen() {
               placeholder="tucorreo@email.com"
               registration={register('email')}
               error={errors.email}
-              className={`w-full rounded-lg border-2 ${errors.email ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
+              className={`w-full text-text-light max-md:text-base text-xs xl:text-base rounded-lg border-2 ${errors.email ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-text-default mb-1"
+              className="block text-sm font-regular xl:font-medium text-text-light mb-1"
             >
               Contraseña
             </label>
@@ -84,14 +84,14 @@ export default function RegisterScreen() {
               placeholder="********"
               registration={register('password')}
               error={errors.password}
-              className={`w-full rounded-lg border-2 ${errors.password ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
+              className={`w-full text-text-light max-md:text-base text-xs xl:text-base rounded-lg border-2 ${errors.password ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
             />
           </div>
 
           <div>
             <label
               htmlFor="confirm-password"
-              className="block text-sm font-medium text-text-default mb-1"
+              className="block text-sm font-regular xl:font-medium text-text-light mb-1"
             >
               Confirmar Contraseña
             </label>
@@ -101,7 +101,7 @@ export default function RegisterScreen() {
               placeholder="********"
               registration={register('confirmPassword')}
               error={errors.confirmPassword}
-              className={`w-full rounded-lg border-2 ${errors.confirmPassword ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
+              className={`w-full text-text-light max-md:text-base text-xs xl:text-base rounded-lg border-2 ${errors.confirmPassword ? 'border-error' : 'border-border-light focus:ring-primary focus:ring-2'} px-4 py-2 focus:outline-none`}
             />
           </div>
           {error && <p className="text-sm text-error text-center">{error}</p>}
@@ -123,18 +123,18 @@ export default function RegisterScreen() {
         {/* Registro con Google (opcional) */}
         <button
           type="button"
-          className="cursor-pointer w-full px-4 py-2 rounded-lg border border-border-light text-text-default font-semibold hover:bg-border-light transition flex items-center justify-center gap-2"
+          className="max-md:text-base xl:text-base text-sm cursor-pointer w-full px-4 py-2 rounded-lg border border-border-light text-text-light font-semibold hover:bg-white hover:text-primary transition flex items-center justify-center gap-2"
         >
           <img
             src="https://www.svgrepo.com/show/355037/google.svg"
             alt="Google"
-            className="h-5 w-5"
+            className="h-4 w-4 xl:h-6 xl:w-6"
           />
           Registrarse con Google
         </button>
 
         {/* Link a login */}
-        <p className="mt-6 text-center text-sm text-text-muted">
+        <p className="max-md:mt-6 mt-4 xl:mt-6 text-center text-sm text-text-light">
           ¿Ya tienes una cuenta?{" "}
           <Link
             to="/login"

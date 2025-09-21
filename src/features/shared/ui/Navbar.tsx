@@ -76,9 +76,9 @@ const Navbar = () => {
             {/* Menú lateral */}
             <div className="w-64 bg-bg-dark h-full shadow-lg p-6 flex flex-col">
               <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-bold text-primary">Menú</h2>
+                <h2 className="text-2xl font-bold text-primary">Menú</h2>
                 <button onClick={() => setIsOpen(false)}>
-                  <X className="h-6 w-6 text-primary" />
+                  <X className="h-8 w-8 text-primary" />
                 </button>
               </div>
 
@@ -86,14 +86,15 @@ const Navbar = () => {
                 <div className='space-y-2 flex flex-col'>
                   <Link
                     to="/"
-                    className="px-4 py-2 rounded-lg bg-primary font-medium text-text-light hover:bg-primary-dark transition"
+                    className="px-4 py-2 rounded-lg bg-primary font-medium text-white hover:bg-primary-dark transition"
                     onClick={() => setIsOpen(false)}
                   >
                     Inicio
                   </Link>
                   <Link
                     to="/lobbies"
-                    className="px-4 py-2 rounded-lg bg-primary font-medium text-text-light hover:bg-primary-dark transition"
+                    className="px-4 py-2 rounded-lg bg-primary font-medium text-white hover:bg-primary-dark transition"
+                    onClick={() => setIsOpen(false)}
                   >
                     Salas
                   </Link>
@@ -101,14 +102,14 @@ const Navbar = () => {
                 <div className='space-y-2 flex flex-col'>
                   <Link
                     to="/register"
-                    className="px-4 py-2 rounded-lg bg-primary text-text-light hover:bg-primary-dark transition"
+                    className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition"
                     onClick={() => setIsOpen(false)}
                   >
                     Registrarse
                   </Link>
                   <Link
                     to="/login"
-                    className="px-4 py-2 rounded-lg bg-primary text-text-light hover:bg-primary-dark transition"
+                    className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition"
                     onClick={() => setIsOpen(false)}
                   >
                     Iniciar sesión

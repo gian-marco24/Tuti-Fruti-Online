@@ -12,7 +12,7 @@ export const ButtonAnim = ({ loading, text, onClick, type }: ButtonAnimProps) =>
             type={type}
             onClick={onClick}
             disabled={loading}
-            className={`w-full text-sm xl:text-base px-4 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-2
+            className={`w-full max-md:text-base text-sm xl:text-base px-4 py-2 rounded-lg font-semibold transition flex items-center justify-center gap-2
               ${loading ? "bg-primary/70 cursor-not-allowed" : "bg-primary hover:bg-primary-dark text-white cursor-pointer"}
             `}
           >
