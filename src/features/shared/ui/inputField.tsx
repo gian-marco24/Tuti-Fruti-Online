@@ -11,7 +11,7 @@ export const InputField = ({ error, registration, ...props }: InputFieldProps) =
   return (
     <div>
       <input
-        className="w-full bg-bg-light rounded-md px-4 py-3 text-text-default border-double"
+        className="w-full rounded-md px-4 py-3 border-double"
         {...registration}
         {...props}
       />

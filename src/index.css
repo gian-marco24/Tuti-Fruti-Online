@@ -15,11 +15,13 @@
 
   /* Neutrales / textos */
   --color-text-default: #1F2937;
+  --color-text-light: #c5c5c5;
   --color-text-muted: #6B7280;
 
   /* Fondos */
-  --color-bg-light: #F9FAFB;
-  --color-bg-dark: #111827;
+  --color-bg-light: #e1e1ec;
+  --color-bg-dark: #1d273b;
+  --color-bg-ultraDark: #191e29;
 
   /* Estados */
   --color-success: #22C55E;

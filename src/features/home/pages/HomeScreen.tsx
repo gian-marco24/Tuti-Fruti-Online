@@ -3,7 +3,7 @@ import { Footer } from "../ui/Footer"
 
 const HomeScreen = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-bg-light text-text-default">
+    <div className="min-h-screen flex flex-col bg-bg-ultraDark text-text-default">
       {/* Hero */}
       <main className="flex flex-1 flex-col items-center justify-center text-center px-6">
         <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
@@ -24,7 +24,7 @@ const HomeScreen = () => {
           </Link>
           <Link
             to="/login"
-            className="px-6 py-3 rounded-lg border border-border-light text-text-default font-semibold hover:bg-border-light hover:text-primary transition"
+            className="px-6 py-3 rounded-lg border border-border-light text-text-light font-semibold hover:bg-border-light hover:text-primary transition"
           >
             Ya tengo cuenta
           </Link>
